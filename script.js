@@ -21,3 +21,13 @@ numberButton.forEach((button) => {
 });
 
 const operatorButtons = document.querySelectorAll("[data-operator]");
+
+operatorButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const selecedOperator = btn.dataset.operator;
+    console.log(btn.dataset.operator);
+    if (previousNumber == true) {
+      let result = previousNumber;
+    }
+  });
+});
