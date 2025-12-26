@@ -24,10 +24,11 @@ const operatorButtons = document.querySelectorAll("[data-operator]");
 
 operatorButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    let selecedOperator = btn.dataset.operator;
-    console.log(btn.dataset.operator);
-    if (previousNumber == true) {
-      let result = previousNumber;
-    }
+    operator = btn.dataset.operator;
+    previousNumber = currentNumber;
+    operator;
+    console.log(operator);
+    console.log(currentNumber);
+    console.log(currentNumber);
   });
 });
