@@ -26,9 +26,7 @@ operatorButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     operator = btn.dataset.operator;
     previousNumber = currentNumber;
-    operator;
-    console.log(operator);
-    console.log(currentNumber);
-    console.log(currentNumber);
+    currentNumber = "";
+    console.log(previousNumber, operator, currentNumber);
   });
 });
