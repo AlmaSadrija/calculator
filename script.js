@@ -38,8 +38,13 @@ equalButton.addEventListener("click", () => {
   //decide calculation logic if it types +=>add // conditional checks
   if (operator == "+") {
     currentNumber = num1 + num2;
+  } else if (operator == "-") {
+    currentNumber = num1 - num2;
+  } else if (operator == "*") {
+    currentNumber = num1 * num2;
+  } else if (operator == "/") {
+    currentNumber = num1 / num2;
   }
-  console.log(currentNumber);
-
-  //step 5
+  //show it in the screen
+  display.textContent = currentNumber;
 });
