@@ -40,6 +40,8 @@ operatorButtons.forEach((btn) => {
 
 const equalButton = document.querySelector("[data-equal]");
 equalButton.addEventListener("click", () => {
+  let result = calculate(previousNumber, currentNumber, operator);
+  /*
   //convert strings to numbers
   let num1 = Number(previousNumber);
   let num2 = Number(currentNumber);
@@ -62,8 +64,7 @@ equalButton.addEventListener("click", () => {
   }
   //show it in the screen
   display.textContent = currentNumber;
-
-  justCalculated = true;
+  justCalculated = true;*/
 });
 
 //Clear button
@@ -75,3 +76,24 @@ clearButton.addEventListener("click", () => {
   display.textContent = "";
   justCalculated = false;
 });
+
+function calculate(a, b, operator) {
+  a = Number(a);
+  b = Number(b);
+  if (
+    operator === null ||
+    a === "" ||
+    b === "" ||
+    (operator === "/" && b === 0)
+  ) {
+    return "Error";
+  } else if (operator === "+") {
+    return a + b;
+  } else if (operator === "-") {
+    return a - b;
+  } else if (operator === "*") {
+    return a * b;
+  } else if (operator === "/") {
+    return a / b;
+  }
+}
