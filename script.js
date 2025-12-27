@@ -41,28 +41,8 @@ operatorButtons.forEach((btn) => {
 const equalButton = document.querySelector("[data-equal]");
 equalButton.addEventListener("click", () => {
   let result = calculate(previousNumber, currentNumber, operator);
+
   /*
-  //convert strings to numbers
-  let num1 = Number(previousNumber);
-  let num2 = Number(currentNumber);
-
-  //decide calculation logic if it types +=>add // conditional checks
-  if (operator === "/" && num2 === 0) {
-    display.textContent = "Error";
-    currentNumber = "";
-    return;
-  }
-
-  if (operator == "+") {
-    currentNumber = num1 + num2;
-  } else if (operator == "-") {
-    currentNumber = num1 - num2;
-  } else if (operator == "*") {
-    currentNumber = num1 * num2;
-  } else if (operator == "/") {
-    currentNumber = num1 / num2;
-  }
-  //show it in the screen
   display.textContent = currentNumber;
   justCalculated = true;*/
 });
@@ -80,10 +60,11 @@ clearButton.addEventListener("click", () => {
 function calculate(a, b, operator) {
   a = Number(a);
   b = Number(b);
+
   if (
     operator === null ||
-    a === "" ||
-    b === "" ||
+    isNaN(a) ||
+    isNaN(b) ||
     (operator === "/" && b === 0)
   ) {
     return "Error";
@@ -96,4 +77,27 @@ function calculate(a, b, operator) {
   } else if (operator === "/") {
     return a / b;
   }
+
+  return "Error"; // fallback for unknown operator
+}
+
+function handleOperator(operatorClicked) {
+  // if we already have a previous number and a current number → calculate
+  if (previousNumber !== "" && currentNumber !== "") {
+    const result = calculate(previousNumber, currentNumber, operator);
+    currentNumber = result;
+    display.textContent = result;
+  }
+
+  // store current as previous
+  previousNumber = currentNumber;
+
+  // store new operator
+  operator = operatorClicked;
+
+  // reset current number
+  currentNumber = "";
+
+  // we are no longer in "just calculated" state
+  justCalculated = false;
 }
