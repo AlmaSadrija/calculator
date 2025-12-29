@@ -106,24 +106,40 @@ function handleNumber(number) {
   // prevent multiple dots
   if (number === "." && currentNumber.includes(".")) return;
 
-  // If the last action was =, and user types a number, start fresh
-  if (previousNumber === "" && operator === null && currentNumber !== "") {
+  // if we just calculated and user types a number → start fresh
+  if (justCalculated) {
     currentNumber = "";
+    previousNumber = "";
+    operator = null;
+    justCalculated = false;
   }
 
   currentNumber += number;
   updateDisplay(currentNumber);
 }
-//2
-function handleResult(number) {
-  if (currentNumber !== "" && previousNumber !== "") {
-    // store new operator
-    operator = operatorClicked;
+
+function handleOperator(operatorClicked) {
+  // if both numbers exist → calculate first (chaining)
+  if (previousNumber !== "" && currentNumber !== "") {
     const result = calculate(previousNumber, currentNumber, operator);
-    previousNumber = result;
+    previousNumber = result;      // result becomes previousNumber
+    currentNumber = "";           // ready for next input
+    updateDisplay(result);
+  }
+
+  // if currentNumber is empty → user wants to replace operator
+  if (currentNumber === "" && previousNumber !== "") {
+    operator = operatorClicked;  // just replace operator
+    return;
+  }
+
+  // first operator press or after typing number
+  if (previousNumber === "") {
+    previousNumber = currentNumber;
     currentNumber = "";
   }
-  if (currentNumber === "") {
-    operator = operatorClicked;
-  }
+
+  operator = operatorClicked;
+  justCalculated = false;
 }
+ function divdingZero(number){
