@@ -41,7 +41,6 @@ operatorButtons.forEach((btn) => {
 const equalButton = document.querySelector("[data-equal]");
 equalButton.addEventListener("click", () => {
   let result = calculate(previousNumber, currentNumber, operator);
-
   /*
   display.textContent = currentNumber;
   justCalculated = true;*/
@@ -120,4 +119,42 @@ function handleOperator(operatorClicked) {
 
   operator = operatorClicked;
   justCalculated = false;
+}
+
+// For repeated = presses
+let lastOperator = null;
+let lastOperand = null;
+
+function handleEqual() {
+  // Case 1: normal calculation
+  if (previousNumber !== "" && currentNumber !== "" && operator) {
+    const result = calculate(previousNumber, currentNumber, operator);
+
+    // Update display and state
+    currentNumber = result;
+    updateDisplay(currentNumber);
+
+    // Save last operation for repeated =
+    lastOperator = operator;
+    lastOperand = currentNumber;
+
+    previousNumber = "";
+    operator = null;
+    justCalculated = true;
+  }
+  // Case 2: repeated = press
+  else if (
+    previousNumber === "" &&
+    currentNumber !== "" &&
+    lastOperator &&
+    lastOperand !== null
+  ) {
+    const result = calculate(currentNumber, lastOperand, lastOperator);
+
+    currentNumber = result;
+    updateDisplay(currentNumber);
+
+    justCalculated = true;
+  }
+  // Case 3: pressing = without enough info → do nothing
 }
