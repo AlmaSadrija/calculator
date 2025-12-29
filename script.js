@@ -101,3 +101,29 @@ function handleOperator(operatorClicked) {
   // we are no longer in "just calculated" state
   justCalculated = false;
 }
+
+function handleNumber(number) {
+  // prevent multiple dots
+  if (number === "." && currentNumber.includes(".")) return;
+
+  // If the last action was =, and user types a number, start fresh
+  if (previousNumber === "" && operator === null && currentNumber !== "") {
+    currentNumber = "";
+  }
+
+  currentNumber += number;
+  updateDisplay(currentNumber);
+}
+//2
+function handleResult(number) {
+  if (currentNumber !== "" && previousNumber !== "") {
+    // store new operator
+    operator = operatorClicked;
+    const result = calculate(previousNumber, currentNumber, operator);
+    previousNumber = result;
+    currentNumber = "";
+  }
+  if (currentNumber === "") {
+    operator = operatorClicked;
+  }
+}
