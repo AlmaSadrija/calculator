@@ -81,27 +81,6 @@ function calculate(a, b, operator) {
   return "Error"; // fallback for unknown operator
 }
 
-function handleOperator(operatorClicked) {
-  // if we already have a previous number and a current number → calculate
-  if (previousNumber !== "" && currentNumber !== "") {
-    const result = calculate(previousNumber, currentNumber, operator);
-    currentNumber = result;
-    display.textContent = result;
-  }
-
-  // store current as previous
-  previousNumber = currentNumber;
-
-  // store new operator
-  operator = operatorClicked;
-
-  // reset current number
-  currentNumber = "";
-
-  // we are no longer in "just calculated" state
-  justCalculated = false;
-}
-
 function handleNumber(number) {
   // prevent multiple dots
   if (number === "." && currentNumber.includes(".")) return;
@@ -122,14 +101,14 @@ function handleOperator(operatorClicked) {
   // if both numbers exist → calculate first (chaining)
   if (previousNumber !== "" && currentNumber !== "") {
     const result = calculate(previousNumber, currentNumber, operator);
-    previousNumber = result;      // result becomes previousNumber
-    currentNumber = "";           // ready for next input
+    previousNumber = result; // result becomes previousNumber
+    currentNumber = ""; // ready for next input
     updateDisplay(result);
   }
 
   // if currentNumber is empty → user wants to replace operator
   if (currentNumber === "" && previousNumber !== "") {
-    operator = operatorClicked;  // just replace operator
+    operator = operatorClicked; // just replace operator
     return;
   }
 
@@ -142,4 +121,3 @@ function handleOperator(operatorClicked) {
   operator = operatorClicked;
   justCalculated = false;
 }
- function divdingZero(number){
