@@ -12,38 +12,29 @@ const display = document.querySelector(".display");
 const numberButton = document.querySelectorAll("[data-number]");
 const operatorButtons = document.querySelectorAll("[data-operator]");
 const clearButton = document.querySelector("[data-clear]");
+const equalButton = document.querySelector("[data-equal]");
+
+function updateDisplay(value) {
+  display.textContent = value;
+}
+updateDisplay("OK");
 
 numberButton.forEach((button) => {
   button.addEventListener("click", () => {
-    if (justCalculated) {
-      //wipe currentNumber
-      currentNumber = "";
-      justCalculated = false;
-    }
-    const number = button.dataset.number;
-    //add clicked digit to currentNumber
-    currentNumber += number;
-
-    //update display
-    display.textContent = currentNumber;
+    handleNumber(button.dataset.number);
   });
 });
 
 operatorButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    operator = btn.dataset.operator;
-    previousNumber = currentNumber;
-    currentNumber = "";
-    console.log(previousNumber, operator, currentNumber);
+    handleOperator(btn.dataset.operator);
   });
 });
 
-const equalButton = document.querySelector("[data-equal]");
+equalButton.addEventListener("click", handleEqual);
+
 equalButton.addEventListener("click", () => {
   let result = calculate(previousNumber, currentNumber, operator);
-  /*
-  display.textContent = currentNumber;
-  justCalculated = true;*/
 });
 
 //Clear button
