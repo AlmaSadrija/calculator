@@ -72,18 +72,7 @@ function calculate(a, b, operator) {
 }
 
 function handleNumber(number) {
-  // prevent multiple dots
-
-  if (number === "0" && currentNumber === "0") return;
-
-  if (currentNumber === "0" && number !== 0 && number !== ".") {
-    currentNumber = number;
-    updateDisplay(currentNumber);
-    return;
-  }
-  if (number === "." && currentNumber.includes(".")) return;
-
-  // if we just calculated and user types a number → start fresh
+  // 1️⃣ Reset after pressing '='
   if (justCalculated) {
     currentNumber = "";
     previousNumber = "";
@@ -91,6 +80,25 @@ function handleNumber(number) {
     justCalculated = false;
   }
 
+  // 2️⃣ Handle decimal
+  if (number === "." && currentNumber.includes(".")) return; // ignore extra dots
+  if (number === "." && currentNumber === "") {
+    // first decimal in empty number
+    currentNumber = "0.";
+    updateDisplay(currentNumber);
+    return;
+  }
+
+  // 3️⃣ Leading zero rules
+  if (number === "0" && currentNumber === "0") return; // ignore extra zeros
+  if (currentNumber === "0" && number !== "0" && number !== ".") {
+    // replace 0 with 1-9
+    currentNumber = number;
+    updateDisplay(currentNumber);
+    return;
+  }
+
+  // 4️⃣ Normal append
   currentNumber += number;
   updateDisplay(currentNumber);
 }
