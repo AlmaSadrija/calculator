@@ -80,8 +80,14 @@ function handleNumber(number) {
     justCalculated = false;
   }
 
-  // 2️⃣ Handle decimal
-  if (number === "." && currentNumber.includes(".")) return; // ignore extra dots
+  // 2️⃣ Handle decimal  // 3️⃣ Leading zero rules
+  if (
+    (number === "." && currentNumber.includes(".")) ||
+    (number === "0" && currentNumber === "0") // ignore extra zeros
+  ) {
+    return;
+  }
+  // ignore extra dots
   if (number === "." && currentNumber === "") {
     // first decimal in empty number
     currentNumber = "0.";
@@ -89,8 +95,6 @@ function handleNumber(number) {
     return;
   }
 
-  // 3️⃣ Leading zero rules
-  if (number === "0" && currentNumber === "0") return; // ignore extra zeros
   if (currentNumber === "0" && number !== "0" && number !== ".") {
     // replace 0 with 1-9
     currentNumber = number;
