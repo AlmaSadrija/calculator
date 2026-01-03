@@ -1,3 +1,10 @@
+const display = document.querySelector(".display");
+const numberButton = document.querySelectorAll("[data-number]");
+const operatorButtons = document.querySelectorAll("[data-operator]");
+const clearButton = document.querySelector("[data-clear]");
+const equalButton = document.querySelector("[data-equal]");
+const historyList = document.querySelector(".history-list");
+
 //current number being typed
 let currentNumber = "";
 
@@ -7,12 +14,7 @@ let previousNumber = "";
 let operator = null;
 //writing numbers after =:
 let justCalculated = false;
-
-const display = document.querySelector(".display");
-const numberButton = document.querySelectorAll("[data-number]");
-const operatorButtons = document.querySelectorAll("[data-operator]");
-const clearButton = document.querySelector("[data-clear]");
-const equalButton = document.querySelector("[data-equal]");
+let history = []; // stores past calculations like "5 + 3 = 8"
 
 function updateDisplay(value) {
   display.textContent = value;
@@ -201,4 +203,9 @@ function handleEqual() {
     justCalculated = true;
   }
   // Case 3: pressing = without enough info → do nothing
+}
+
+function updateHistory() {
+  historyList.innerHTML = "";
+  historyList.forEach((entry, index) => {});
 }
