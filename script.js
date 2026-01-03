@@ -75,6 +75,14 @@ function handleNumber(number) {
   // prevent multiple dots
   if (number === "." && currentNumber.includes(".")) return;
 
+  if (number === "0" && currentNumber === "0") return;
+
+  if (currentNumber === "0" && number !== 0 && number !== ".") {
+    currentNumber = number;
+    updateDisplay(currentNumber);
+    return;
+  }
+
   // if we just calculated and user types a number → start fresh
   if (justCalculated) {
     currentNumber = "";
@@ -85,6 +93,39 @@ function handleNumber(number) {
 
   currentNumber += number;
   updateDisplay(currentNumber);
+}
+
+document.addEventListener("keydown", (e) => {
+  if (!isNaN(e.key)) {
+    handleNumber(e.key);
+  }
+
+  if (e.key === ".") {
+    handleNumber(".");
+  }
+
+  if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") {
+    handleOperator(e.key);
+  }
+
+  if (e.key === "Enter" || e.key === "=") {
+    handleEqual();
+  }
+
+  if (e.key === "Backspace") {
+    handleDelete();
+  }
+
+  if (e.key === "Escape") {
+    handleClear();
+  }
+});
+
+function handleDelete() {
+  if (justCalculated) return;
+
+  currentNumber = currentNumber.slice(0, -1);
+  updateDisplay(currentNumber || "0");
 }
 
 function handleOperator(operatorClicked) {
