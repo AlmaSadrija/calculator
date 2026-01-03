@@ -73,7 +73,6 @@ function calculate(a, b, operator) {
 
 function handleNumber(number) {
   // prevent multiple dots
-  if (number === "." && currentNumber.includes(".")) return;
 
   if (number === "0" && currentNumber === "0") return;
 
@@ -82,6 +81,7 @@ function handleNumber(number) {
     updateDisplay(currentNumber);
     return;
   }
+  if (number === "." && currentNumber.includes(".")) return;
 
   // if we just calculated and user types a number → start fresh
   if (justCalculated) {
