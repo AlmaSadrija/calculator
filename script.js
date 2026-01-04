@@ -203,6 +203,9 @@ function handleEqual() {
     justCalculated = true;
   }
   // Case 3: pressing = without enough info → do nothing
+  const calcString = `${previousNumber} ${operator} ${currentNumber} = ${result}`;
+  history.push(calcString);
+  updateHistory();
 }
 
 function updateHistory() {
