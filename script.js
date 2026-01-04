@@ -207,5 +207,11 @@ function handleEqual() {
 
 function updateHistory() {
   historyList.innerHTML = "";
-  historyList.forEach((entry, index) => {});
+  historyList.forEach((entry, index) => {
+    const li = document.createElement("li");
+    li.textContent = entry;
+    li.addEventListener("click", () => {
+      currentNumber = entry.split("=").pop().trim();
+    });
+  });
 }
