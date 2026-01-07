@@ -20,7 +20,6 @@ function updateDisplay(value) {
   display.textContent = value;
 }
 
-
 numberButton.forEach((button) => {
   button.addEventListener("click", () => {
     handleNumber(button.dataset.number);
@@ -188,8 +187,8 @@ function handleSpecial(special) {
     if (currentNumber === "" || currentNumber === "0") {
       return;
     }
-    currentNumber = currentNumber.startsWith("-") 
-      ? currentNumber.slice(1) 
+    currentNumber = currentNumber.startsWith("-")
+      ? currentNumber.slice(1)
       : "-" + currentNumber;
     updateDisplay(currentNumber);
   } else if (special === "%") {
@@ -211,7 +210,7 @@ let lastOperand = null;
 function handleEqual() {
   let result;
   let calcString = "";
-  
+
   // Case 1: normal calculation
   if (previousNumber !== "" && currentNumber !== "" && operator) {
     const originalCurrent = currentNumber; // Save before calculation
@@ -231,7 +230,7 @@ function handleEqual() {
     previousNumber = "";
     operator = null;
     justCalculated = true;
-    
+
     // Add to history and update
     history.push(calcString);
     updateHistory();
