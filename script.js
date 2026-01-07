@@ -4,6 +4,7 @@ const operatorButtons = document.querySelectorAll("[data-operator]");
 const clearButton = document.querySelector("[data-clear]");
 const equalButton = document.querySelector("[data-equal]");
 const historyList = document.querySelector(".history-list");
+const clearHistroy = document.querySelector("[data-clearing]");
 
 //current number being typed
 let currentNumber = "";
@@ -271,3 +272,9 @@ function updateHistory() {
     historyList.appendChild(li);
   });
 }
+
+// clearing history
+clearHistroy.addEventListener("click", () => {
+  if (confirm("Are you sure you want to clear all history?")) history = [];
+  historyList.innerHTML = "";
+});
