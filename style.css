@@ -17,7 +17,7 @@ body {
 
 .container {
   display: grid;
-  grid-template-rows: auto 1fr repeat(5, 80px);
+  grid-template-rows: auto auto repeat(5, 80px);
   grid-template-columns: repeat(4, 80px);
   gap: 12px;
   background: rgba(255, 255, 255, 0.1);
@@ -54,6 +54,9 @@ body {
   max-height: 150px;
   overflow-y: auto;
   margin-bottom: 10px;
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .history h3 {
@@ -91,6 +94,9 @@ button {
   cursor: pointer;
   transition: all 0.2s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 button:hover {
@@ -162,7 +168,7 @@ button[data-number="0"] {
 @media (max-width: 400px) {
   .container {
     grid-template-columns: repeat(4, 70px);
-    grid-template-rows: auto 1fr repeat(5, 70px);
+    grid-template-rows: auto auto repeat(5, 70px);
     gap: 10px;
     padding: 15px;
   }
