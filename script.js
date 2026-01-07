@@ -19,7 +19,7 @@ let history = []; // stores past calculations like "5 + 3 = 8"
 function updateDisplay(value) {
   display.textContent = value;
 }
-updateDisplay("OK");
+
 
 numberButton.forEach((button) => {
   button.addEventListener("click", () => {
@@ -33,19 +33,28 @@ operatorButtons.forEach((btn) => {
   });
 });
 
-equalButton.addEventListener("click", handleEqual);
-
-equalButton.addEventListener("click", () => {
-  let result = calculate(previousNumber, currentNumber, operator);
+// Handle special buttons (+/-, %)
+const specialButtons = document.querySelectorAll("[data-special]");
+specialButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const special = btn.dataset.special;
+    if (special !== "emoji") {
+      handleSpecial(special);
+    }
+  });
 });
+
+equalButton.addEventListener("click", handleEqual);
 
 //Clear button
 clearButton.addEventListener("click", () => {
   currentNumber = "";
   previousNumber = "";
   operator = null;
+  lastOperator = null;
+  lastOperand = null;
   //disply it in screen
-  display.textContent = "";
+  updateDisplay("0");
   justCalculated = false;
 });
 
@@ -130,8 +139,8 @@ document.addEventListener("keydown", (e) => {
     handleDelete();
   }
 
-  if (e.key === "Escape") {
-    handleClear();
+  if (e.key === "Escape" || e.key === "c" || e.key === "C") {
+    clearButton.click();
   }
 });
 
@@ -143,6 +152,11 @@ function handleDelete() {
 }
 
 function handleOperator(operatorClicked) {
+  // Don't handle +/- and % as regular operators
+  if (operatorClicked === "+/-" || operatorClicked === "%") {
+    return;
+  }
+
   // if both numbers exist → calculate first (chaining)
   if (previousNumber !== "" && currentNumber !== "") {
     const result = calculate(previousNumber, currentNumber, operator);
@@ -167,26 +181,60 @@ function handleOperator(operatorClicked) {
   justCalculated = false;
 }
 
+// Handle special operations: +/- (negate) and % (percent)
+function handleSpecial(special) {
+  if (special === "+/-") {
+    // Negate the current number
+    if (currentNumber === "" || currentNumber === "0") {
+      return;
+    }
+    currentNumber = currentNumber.startsWith("-") 
+      ? currentNumber.slice(1) 
+      : "-" + currentNumber;
+    updateDisplay(currentNumber);
+  } else if (special === "%") {
+    // Convert to percentage (divide by 100)
+    if (currentNumber === "") {
+      return;
+    }
+    const num = Number(currentNumber);
+    if (isNaN(num)) return;
+    currentNumber = (num / 100).toString();
+    updateDisplay(currentNumber);
+  }
+}
+
 // For repeated = presses
 let lastOperator = null;
 let lastOperand = null;
 
 function handleEqual() {
+  let result;
+  let calcString = "";
+  
   // Case 1: normal calculation
   if (previousNumber !== "" && currentNumber !== "" && operator) {
-    const result = calculate(previousNumber, currentNumber, operator);
+    const originalCurrent = currentNumber; // Save before calculation
+    result = calculate(previousNumber, currentNumber, operator);
 
     // Update display and state
-    currentNumber = result;
+    currentNumber = result.toString();
     updateDisplay(currentNumber);
 
     // Save last operation for repeated =
     lastOperator = operator;
-    lastOperand = currentNumber;
+    lastOperand = originalCurrent; // Save the second operand before it becomes result
+
+    // Create history string before clearing previousNumber
+    calcString = `${previousNumber} ${operator} ${originalCurrent} = ${result}`;
 
     previousNumber = "";
     operator = null;
     justCalculated = true;
+    
+    // Add to history and update
+    history.push(calcString);
+    updateHistory();
   }
   // Case 2: repeated = press
   else if (
@@ -195,26 +243,32 @@ function handleEqual() {
     lastOperator &&
     lastOperand !== null
   ) {
-    const result = calculate(currentNumber, lastOperand, lastOperator);
+    const oldCurrent = currentNumber;
+    result = calculate(currentNumber, lastOperand, lastOperator);
 
     currentNumber = result;
     updateDisplay(currentNumber);
 
+    calcString = `${oldCurrent} ${lastOperator} ${lastOperand} = ${result}`;
+    history.push(calcString);
+    updateHistory();
+
     justCalculated = true;
   }
   // Case 3: pressing = without enough info → do nothing
-  const calcString = `${previousNumber} ${operator} ${currentNumber} = ${result}`;
-  history.push(calcString);
-  updateHistory();
 }
 
 function updateHistory() {
   historyList.innerHTML = "";
-  historyList.forEach((entry, index) => {
+  history.forEach((entry, index) => {
     const li = document.createElement("li");
     li.textContent = entry;
     li.addEventListener("click", () => {
-      currentNumber = entry.split("=").pop().trim();
+      const result = entry.split("=").pop().trim();
+      currentNumber = result;
+      updateDisplay(currentNumber);
+      justCalculated = true;
     });
+    historyList.appendChild(li);
   });
 }
