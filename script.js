@@ -56,7 +56,7 @@ clearButton.addEventListener("click", () => {
   lastOperator = null;
   lastOperand = null;
   //disply it in screen
-  updateCalculatorDisplay("0");
+  updateCalculatorDisplay();
   state.justCalculated = false;
 });
 
@@ -119,7 +119,7 @@ function handleNumber(number) {
 
   // 4️⃣ Normal append
   state.current += number;
-  updateDisplay(state.current);
+  updateCalculatorDisplay(state.current);
 }
 
 document.addEventListener("keydown", (e) => {
@@ -195,7 +195,7 @@ function handleSpecial(special) {
     state.current = state.current.startsWith("-")
       ? state.current.slice(1)
       : "-" + state.current;
-    updateDisplay(state.current);
+    updateCalculatorDisplay(state.current);
   } else if (special === "%") {
     // Convert to percentage (divide by 100)
     if (state.current === "") {
