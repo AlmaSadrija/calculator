@@ -52,7 +52,7 @@ equalButton.addEventListener("click", handleEqual);
 clearButton.addEventListener("click", () => {
   state.current = "";
   state.previous = "";
-  state.operator = "";
+  state.operator = null;
   lastOperator = null;
   lastOperand = null;
   //disply it in screen
@@ -180,7 +180,7 @@ function handleOperator(operatorClicked) {
   }
 
   state.operator = operatorClicked;
-  justCalculated = false;
+  state.justCalculated = false;
 }
 
 // Handle special operations: +/- (negate) and % (percent)
@@ -232,7 +232,7 @@ function handleEqual() {
 
     state.previous = "";
     state.operator = null;
-    justCalculated = true;
+    state.justCalculated = true;
 
     // Add to history and update
     history.push(calcString);
@@ -255,7 +255,7 @@ function handleEqual() {
     history.push(calcString);
     updateHistory();
 
-    justCalculated = true;
+    state.justCalculated = true;
   }
   // Case 3: pressing = without enough info → do nothing
 }
@@ -269,7 +269,7 @@ function updateHistory() {
       const result = entry.split("=").pop().trim();
       state.current = result;
       updateDisplay(state.current);
-      justCalculated = true;
+      state.justCalculated = true;
     });
     historyList.appendChild(li);
   });
