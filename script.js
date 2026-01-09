@@ -56,7 +56,7 @@ clearButton.addEventListener("click", () => {
   lastOperator = null;
   lastOperand = null;
   //disply it in screen
-  updateDisplay("0");
+  updateCalculatorDisplay("0");
   state.justCalculated = false;
 });
 
@@ -104,14 +104,16 @@ function handleNumber(number) {
   if (number === "." && state.current === "") {
     // first decimal in empty number
     state.current = "0.";
-    updateDisplay(state.current);
+    updateCalculatorDisplay();
+
     return;
   }
 
   if (state.current === "0" && number !== "0" && number !== ".") {
     // replace 0 with 1-9
     state.current = number;
-    updateDisplay(state.current);
+    updateCalculatorDisplay();
+
     return;
   }
 
@@ -150,7 +152,7 @@ function handleDelete() {
   if (state.justCalculated) return;
 
   state.current = state.current.slice(0, -1);
-  updateDisplay(state.current || "0");
+  updateCalculatorDisplay(state.current || "0");
 }
 
 function handleOperator(operatorClicked) {
@@ -164,7 +166,7 @@ function handleOperator(operatorClicked) {
     const result = calculate(state.previous, state.current, state.operator);
     state.previous = result; // result becomes state.previous
     state.current = ""; // ready for next input
-    updateDisplay(result);
+    updateCalculatorDisplay(result);
   }
 
   // if state.current is empty → user wants to replace operator
@@ -202,7 +204,7 @@ function handleSpecial(special) {
     const num = Number(state.current);
     if (isNaN(num)) return;
     state.current = (num / 100).toString();
-    updateDisplay(state.current);
+    updateCalculatorDisplay();
   }
 }
 
@@ -221,7 +223,7 @@ function handleEqual() {
 
     // Update display and state
     state.current = result.toString();
-    updateDisplay(state.current);
+    updateCalculatorDisplay();
 
     // Save last operation for repeated =
     lastOperator = state.operator;
@@ -249,7 +251,7 @@ function handleEqual() {
     result = calculate(state.current, lastOperand, lastOperator);
 
     state.current = result;
-    updateDisplay(state.current);
+    updateCalculatorDisplay();
 
     calcString = `${oldCurrent} ${lastOperator} ${lastOperand} = ${result}`;
     history.push(calcString);
@@ -268,7 +270,7 @@ function updateHistory() {
     li.addEventListener("click", () => {
       const result = entry.split("=").pop().trim();
       state.current = result;
-      updateDisplay(state.current);
+      updateCalculatorDisplay();
       state.justCalculated = true;
     });
     historyList.appendChild(li);
@@ -280,3 +282,17 @@ clearHistroy.addEventListener("click", () => {
   if (confirm("Are you sure you want to clear all history?")) history = [];
   historyList.innerHTML = "";
 });
+
+function updateCalculatorDisplay() {
+  if (
+    state.operator !== null &&
+    state.previous !== "" &&
+    state.current === ""
+  ) {
+    display.textContent = `${state.previous} ${state.operator}`;
+  } else if (state.current !== "") {
+    display.textContent = state.current;
+  } else {
+    display.textContent = "0";
+  }
+}
