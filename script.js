@@ -164,25 +164,30 @@ function handleOperator(operatorClicked) {
   // if both numbers exist → calculate first (chaining)
   if (state.previous !== "" && state.current !== "") {
     const result = calculate(state.previous, state.current, state.operator);
-    state.previous = result; // result becomes state.previous
+    state.previous = result.toString(); // result becomes state.previous
     state.current = ""; // ready for next input
-    updateCalculatorDisplay(result);
+    state.operator = operatorClicked; // set the new operator
+    state.justCalculated = false;
+    updateCalculatorDisplay(); // Update display to show previous + new operator
+    return;
   }
 
   // if state.current is empty → user wants to replace operator
   if (state.current === "" && state.previous !== "") {
     state.operator = operatorClicked; // just replace operator
+    updateCalculatorDisplay(); // Update display to show previous + new operator
     return;
   }
 
   // first operator press or after typing number
   if (state.previous === "") {
-    state.previous = state.current;
+    state.previous = state.current || "0"; // Use "0" if current is empty
     state.current = "";
   }
 
   state.operator = operatorClicked;
   state.justCalculated = false;
+  updateCalculatorDisplay(); // Update display to show previous + operator
 }
 
 // Handle special operations: +/- (negate) and % (percent)
@@ -221,25 +226,41 @@ function handleEqual() {
     const originalCurrent = state.current; // Save before calculation
     result = calculate(state.previous, state.current, state.operator);
 
-    // Update display and state
-    state.current = result.toString();
-    updateCalculatorDisplay();
-
-    // Save last operation for repeated =
-    lastOperator = state.operator;
-    lastOperand = originalCurrent; // Save the second operand before it becomes result
-
     // Create history string before clearing state.previous
     calcString = `${state.previous} ${state.operator} ${originalCurrent} = ${result}`;
-
-    state.previous = "";
-    state.operator = null;
-    state.justCalculated = true;
-
     // Add to history and update
     history.push(calcString);
     updateHistory();
+
+    // Update display and state
+    state.previous = result.toString();
+    state.current = "";
+    state.justCalculated = true;
+    state.operator = null;
+
+    updateCalculatorDisplay();
+    // Save last operation for repeated =
+    // Repeated = press
+  } else if (
+    state.previous === "" &&
+    state.current !== "" &&
+    lastOperator &&
+    lastOperand !== null
+  ) {
+    const oldCurrent = state.current;
+    result = calculate(state.current, lastOperand, lastOperator);
+
+    state.previous = result.toString();
+    state.current = "";
+    state.justCalculated = true;
+
+    calcString = `${oldCurrent} ${lastOperator} ${lastOperand} = ${result}`;
+    history.push(calcString);
+    updateHistory();
+
+    updateCalculatorDisplay();
   }
+
   // Case 2: repeated = press
   else if (
     state.previous === "" &&
@@ -283,16 +304,24 @@ clearHistroy.addEventListener("click", () => {
   historyList.innerHTML = "";
 });
 
-function updateCalculatorDisplay() {
-  if (
-    state.operator !== null &&
-    state.previous !== "" &&
-    state.current === ""
-  ) {
-    display.textContent = `${state.previous} ${state.operator}`;
-  } else if (state.current !== "") {
+function updateCalculatorDisplay(value) {
+  const display = document.querySelector(".display");
+  // If a specific value is provided, use it (for backward compatibility)
+  if (value !== undefined) {
+    display.textContent = value;
+    return;
+  }
+  
+  // If user is typing a number, show it
+  if (state.current !== "") {
     display.textContent = state.current;
-  } else {
-    display.textContent = "0";
+  }
+  // If an operator is selected but no current number, show previous + operator
+  else if (state.operator && state.previous !== "") {
+    display.textContent = `${state.previous} ${state.operator}`;
+  }
+  // Otherwise just show previous result
+  else {
+    display.textContent = state.previous || "0";
   }
 }
