@@ -55,9 +55,9 @@ clearButton.addEventListener("click", () => {
   state.operator = null;
   lastOperator = null;
   lastOperand = null;
-  //disply it in screen
-  updateCalculatorDisplay();
   state.justCalculated = false;
+  //display it on screen
+  updateCalculatorDisplay();
 });
 
 function calculate(a, b, operator) {
@@ -200,7 +200,7 @@ function handleSpecial(special) {
     state.current = state.current.startsWith("-")
       ? state.current.slice(1)
       : "-" + state.current;
-    updateCalculatorDisplay(state.current);
+    updateCalculatorDisplay();
   } else if (special === "%") {
     // Convert to percentage (divide by 100)
     if (state.current === "") {
@@ -232,36 +232,19 @@ function handleEqual() {
     history.push(calcString);
     updateHistory();
 
+    // Save last operation for repeated = presses
+    lastOperator = state.operator;
+    lastOperand = originalCurrent;
+
     // Update display and state
-    state.previous = result.toString();
-    state.current = "";
+    state.current = result.toString();
+    state.previous = "";
     state.justCalculated = true;
     state.operator = null;
 
     updateCalculatorDisplay();
-    // Save last operation for repeated =
-    // Repeated = press
-  } else if (
-    state.previous === "" &&
-    state.current !== "" &&
-    lastOperator &&
-    lastOperand !== null
-  ) {
-    const oldCurrent = state.current;
-    result = calculate(state.current, lastOperand, lastOperator);
-
-    state.previous = result.toString();
-    state.current = "";
-    state.justCalculated = true;
-
-    calcString = `${oldCurrent} ${lastOperator} ${lastOperand} = ${result}`;
-    history.push(calcString);
-    updateHistory();
-
-    updateCalculatorDisplay();
   }
-
-  // Case 2: repeated = press
+  // Case 2: repeated = press (after a previous calculation)
   else if (
     state.previous === "" &&
     state.current !== "" &&
@@ -271,14 +254,14 @@ function handleEqual() {
     const oldCurrent = state.current;
     result = calculate(state.current, lastOperand, lastOperator);
 
-    state.current = result;
-    updateCalculatorDisplay();
+    state.current = result.toString();
+    state.justCalculated = true;
 
     calcString = `${oldCurrent} ${lastOperator} ${lastOperand} = ${result}`;
     history.push(calcString);
     updateHistory();
 
-    state.justCalculated = true;
+    updateCalculatorDisplay();
   }
   // Case 3: pressing = without enough info → do nothing
 }
