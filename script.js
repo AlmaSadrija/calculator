@@ -6,15 +6,17 @@ const equalButton = document.querySelector("[data-equal]");
 const historyList = document.querySelector(".history-list");
 const clearHistroy = document.querySelector("[data-clearing]");
 
-//current number being typed
-let currentNumber = "";
+const state = {
+  //current number being typed
+  current: "",
+  //prev number stored for calculation
+  previous: "",
+  //operator seleced
+  operator: null,
+  //writing numbers after =:
+  justCalculated: false,
+};
 
-//prev number stored for calculation
-let previousNumber = "";
-//operator seleced
-let operator = null;
-//writing numbers after =:
-let justCalculated = false;
 let history = []; // stores past calculations like "5 + 3 = 8"
 
 function updateDisplay(value) {
@@ -48,14 +50,14 @@ equalButton.addEventListener("click", handleEqual);
 
 //Clear button
 clearButton.addEventListener("click", () => {
-  currentNumber = "";
-  previousNumber = "";
-  operator = null;
+  state.current;
+  state.previous;
+  state.operator;
   lastOperator = null;
   lastOperand = null;
   //disply it in screen
   updateDisplay("0");
-  justCalculated = false;
+  state.justCalculated;
 });
 
 function calculate(a, b, operator) {
@@ -84,7 +86,7 @@ function calculate(a, b, operator) {
 
 function handleNumber(number) {
   // 1️⃣ Reset after pressing '='
-  if (justCalculated) {
+  if (state.justCalculated) {
     currentNumber = "";
     previousNumber = "";
     operator = null;
