@@ -5,7 +5,7 @@ const clearButton = document.querySelector("[data-clear]");
 const equalButton = document.querySelector("[data-equal]");
 const historyList = document.querySelector(".history-list");
 const clearHistroy = document.querySelector("[data-clearing]");
-const operationDispaly = document.querySelector(".operation-display");
+const operationDisplay = document.querySelector(".operation-display");
 
 const state = {
   //current number being typed
@@ -294,26 +294,14 @@ function updateCalculatorDisplay(value) {
     return;
   }
 
-  // If user is typing a number, show it
-  if (state.current !== "") {
-    display.textContent = state.current;
-  }
-  // If an operator is selected but no current number, show previous + operator
-  else if (state.operator && state.previous !== "") {
-    display.textContent = `${state.previous} ${state.operator}`;
-  }
-  // Otherwise just show previous result
-  else {
-    display.textContent = state.previous || "0";
-  }
-
-  if (state.current !== "" && state.operator !== null) {
-    operationDispaly.textContent = `${state.previous} ${state.operator}`;
+  // Top line: previous + operator
+  if (state.operator && state.previous !== "") {
+    operationDisplay.textContent = `${state.previous} ${state.operator}`;
   } else {
-    operationDispaly.textContent = "";
+    operationDisplay.textContent = "";
   }
 
-  // Update main display (bottom line)
+  // Bottom line: current or previous or 0
   if (state.current !== "") {
     display.textContent = state.current;
   } else if (state.previous !== "") {
