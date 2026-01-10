@@ -5,6 +5,7 @@ const clearButton = document.querySelector("[data-clear]");
 const equalButton = document.querySelector("[data-equal]");
 const historyList = document.querySelector(".history-list");
 const clearHistroy = document.querySelector("[data-clearing]");
+const operationDispaly = document.querySelector(".operation-display");
 
 const state = {
   //current number being typed
@@ -304,5 +305,20 @@ function updateCalculatorDisplay(value) {
   // Otherwise just show previous result
   else {
     display.textContent = state.previous || "0";
+  }
+
+  if (state.current !== "" && state.operator !== null) {
+    operationDispaly.textContent = `${state.previous} ${state.operator}`;
+  } else {
+    operationDispaly.textContent = "";
+  }
+
+  // Update main display (bottom line)
+  if (state.current !== "") {
+    display.textContent = state.current;
+  } else if (state.previous !== "") {
+    display.textContent = state.previous;
+  } else {
+    display.textContent = "0";
   }
 }
