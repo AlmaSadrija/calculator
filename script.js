@@ -294,7 +294,7 @@ function updateCalculatorDisplay(value) {
     display.textContent = value;
     return;
   }
-  
+
   // If user is typing a number, show it
   if (state.current !== "") {
     display.textContent = state.current;
