@@ -105,7 +105,6 @@ function handleNumber(number) {
     // first decimal in empty number
     state.current = "0.";
     updateCalculatorDisplay();
-
     return;
   }
 
@@ -113,7 +112,6 @@ function handleNumber(number) {
     // replace 0 with 1-9
     state.current = number;
     updateCalculatorDisplay();
-
     return;
   }
 
