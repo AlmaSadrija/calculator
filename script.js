@@ -7,6 +7,11 @@ const historyList = document.querySelector(".history-list");
 const clearHistroy = document.querySelector("[data-clearing]");
 const operationDisplay = document.querySelector(".operation-display");
 
+// Debug: Check if elements are found
+if (!display) console.error("Display element not found!");
+if (!operationDisplay) console.warn("Operation display element not found - operator display won't work");
+if (operatorButtons.length === 0) console.error("No operator buttons found!");
+
 const state = {
   //current number being typed
   current: "",
@@ -118,7 +123,7 @@ function handleNumber(number) {
 
   // 4️⃣ Normal append
   state.current += number;
-  updateCalculatorDisplay(state.current);
+  updateCalculatorDisplay();
 }
 
 document.addEventListener("keydown", (e) => {
@@ -151,7 +156,7 @@ function handleDelete() {
   if (state.justCalculated) return;
 
   state.current = state.current.slice(0, -1);
-  updateCalculatorDisplay(state.current || "0");
+  updateCalculatorDisplay();
 }
 
 function handleOperator(operatorClicked) {
@@ -287,21 +292,28 @@ clearHistroy.addEventListener("click", () => {
 });
 
 function updateCalculatorDisplay(value) {
-  const display = document.querySelector(".display");
-  // If a specific value is provided, use it (for backward compatibility)
+  // If a specific value is provided (for backward compatibility), use it directly
   if (value !== undefined) {
     display.textContent = value;
+    // Keep operation display visible if there's an operation
+    if (operationDisplay && state.previous !== "" && state.operator) {
+      operationDisplay.textContent = `${state.previous} ${state.operator}`;
+    } else if (operationDisplay) {
+      operationDisplay.textContent = "";
+    }
     return;
   }
 
-  // Top line: previous + operator
-  if (state.operator && state.previous !== "") {
-    operationDisplay.textContent = `${state.previous} ${state.operator}`;
-  } else {
-    operationDisplay.textContent = "";
+  // 1️⃣ Top display (operation display): show previous + operator
+  if (operationDisplay) {
+    if (state.previous !== "" && state.operator) {
+      operationDisplay.textContent = `${state.previous} ${state.operator}`;
+    } else {
+      operationDisplay.textContent = "";
+    }
   }
 
-  // Bottom line: current or previous or 0
+  // 2️⃣ Bottom display (main display): show current number if typing, else show previous or 0
   if (state.current !== "") {
     display.textContent = state.current;
   } else if (state.previous !== "") {
