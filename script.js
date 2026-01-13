@@ -275,6 +275,10 @@ function handleEqual() {
   //if the number is too long after decimal point cut it
 
   if (state.current !== "" && state.previous !== "" && state.operator) {
+    result = calculate(state.current, state.previous, state.operator);
+    if (result === ".") {
+      const x = result;
+    }
   }
 }
 
