@@ -235,8 +235,8 @@ function handleEqual() {
     //  if the number is too long after decimal point cut it
     var x = result;
     if (!Number.isInteger(x)) {
-      return Math.ceil(x * 100) / 100;
-      result = x;
+      x.toFixed(2).Number();
+      x = result;
     }
     updateCalculatorDisplay();
 
