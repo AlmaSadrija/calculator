@@ -273,8 +273,8 @@ function handleEqual() {
   // Case 3: pressing = without enough info → do nothing
 
   //if the number is too long after decimal point cut it
-  else if (result.length >= 5) {
-    const x = result;
+  else if (result.length >= 5 && result.toString() === ".") {
+    var x = result;
     x = Math.floor(x * 100) / 100;
     alert(x.toFixed(2));
   }
