@@ -279,6 +279,7 @@ function handleEqual() {
     if (result === ".") {
       const x = result;
       x = Math.floor(x * 100) / 100;
+      alert(x.toFixed(2));
     }
   }
 }
