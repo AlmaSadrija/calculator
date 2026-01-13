@@ -278,6 +278,7 @@ function handleEqual() {
     result = calculate(state.current, state.previous, state.operator);
     if (result === ".") {
       const x = result;
+      x = Math.floor(x * 100) / 100;
     }
   }
 }
