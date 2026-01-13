@@ -268,6 +268,10 @@ function handleEqual() {
     updateCalculatorDisplay();
   }
   // Case 3: pressing = without enough info → do nothing
+
+  //if the number is too long after decimal point cut it
+
+  if(state.current!==""&&state.previous!==""&&state.operator)
 }
 
 function updateHistory() {
