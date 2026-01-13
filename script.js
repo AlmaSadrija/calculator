@@ -9,7 +9,10 @@ const operationDisplay = document.querySelector(".operation-display");
 
 // Debug: Check if elements are found
 if (!display) console.error("Display element not found!");
-if (!operationDisplay) console.warn("Operation display element not found - operator display won't work");
+if (!operationDisplay)
+  console.warn(
+    "Operation display element not found - operator display won't work"
+  );
 if (operatorButtons.length === 0) console.error("No operator buttons found!");
 
 const state = {
@@ -271,7 +274,8 @@ function handleEqual() {
 
   //if the number is too long after decimal point cut it
 
-  if(state.current!==""&&state.previous!==""&&state.operator)
+  if (state.current !== "" && state.previous !== "" && state.operator) {
+  }
 }
 
 function updateHistory() {
