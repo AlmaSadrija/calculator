@@ -232,6 +232,13 @@ function handleEqual() {
   if (state.previous !== "" && state.current !== "" && state.operator) {
     const originalCurrent = state.current; // Save before calculation
     result = calculate(state.previous, state.current, state.operator);
+//  if the number is too long after decimal point cut it
+    var x = result;
+    if (!Number.isInteger(x)) {
+      return Math.ceil(x * 100) / 100;
+      result = x;
+    }
+    updateCalculatorDisplay();
 
     // Create history string before clearing state.previous
     calcString = `${state.previous} ${state.operator} ${originalCurrent} = ${result}`;
@@ -273,12 +280,7 @@ function handleEqual() {
   // Case 3: pressing = without enough info → do nothing
 
   //if the number is too long after decimal point cut it
-  else if (state.previous !== "" && state.current !== "" && state.operator) {
-    result = calculate(state.current, state.previous, state.operator);
-    var x = result;
-    if (!Number.isInteger(x)) {
-      console.log("Not an integer");
-    }
+  else if {
   }
 }
 
