@@ -273,15 +273,12 @@ function handleEqual() {
   // Case 3: pressing = without enough info → do nothing
 
   //if the number is too long after decimal point cut it
-
-  if (state.current !== "" && state.previous !== "" && state.operator) {
-    result = calculate(state.current, state.previous, state.operator);
-    if (result === ".") {
-      const x = result;
-      x = Math.floor(x * 100) / 100;
-      alert(x.toFixed(2));
-    }
+  else if (result.length >= 5) {
+    const x = result;
+    x = Math.floor(x * 100) / 100;
+    alert(x.toFixed(2));
   }
+  updateCalculatorDisplay();
 }
 
 function updateHistory() {
