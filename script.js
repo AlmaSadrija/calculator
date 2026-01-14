@@ -337,4 +337,9 @@ function updateCalculatorDisplay(value) {
 //Dark mode btn
 darkModeBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
+  if (button === true) {
+    button.innerHTML = "🌙";
+  } else {
+    button.innerHTML = "☀️";
+  }
 });
