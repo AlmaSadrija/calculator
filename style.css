@@ -208,6 +208,22 @@ button[data-number="0"] {
   }
 }
 
-.dark-mode {
+body.dark-mode {
   background-color: black;
+}
+
+body.dark-mode .container {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .display,
+body.dark-mode .operation-display {
+  background-color: #000;
+  color: white;
+}
+
+body.dark-mode button {
+  background-color: #2a2a2a;
+  color: white;
+  border: 1px solid #444;
 }
