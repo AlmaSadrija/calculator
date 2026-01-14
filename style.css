@@ -29,7 +29,7 @@ body {
 }
 
 .container:hover {
-  transform: scale(5.1);
+  transform: scale(0.5);
 }
 
 .display {
