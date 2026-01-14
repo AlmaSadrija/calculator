@@ -336,5 +336,5 @@ function updateCalculatorDisplay(value) {
 }
 //Dark mode btn
 darkModeBtn.addEventListener("click", () => {
-  const li = document.createElement("li");
+  document.body.classList.toggle("dark-mode");
 });
