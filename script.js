@@ -6,7 +6,7 @@ const equalButton = document.querySelector("[data-equal]");
 const historyList = document.querySelector(".history-list");
 const clearHistroy = document.querySelector("[data-clearing]");
 const operationDisplay = document.querySelector(".operation-display");
-const darkMModeBtn = document.querySelector(".dark-mode");
+const darkModeBtn = document.querySelector(".dark-mode");
 
 // Debug: Check if elements are found
 if (!display) console.error("Display element not found!");
@@ -334,3 +334,7 @@ function updateCalculatorDisplay(value) {
     display.textContent = "0";
   }
 }
+//Dark mode btn
+darkModeBtn.addEventListener("click", () => {
+  const li = document.createElement("li");
+});
