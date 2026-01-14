@@ -207,3 +207,7 @@ button[data-number="0"] {
     font-size: 1.1rem;
   }
 }
+
+.dark-mode {
+  color: black;
+}
