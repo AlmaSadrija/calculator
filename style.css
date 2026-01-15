@@ -233,3 +233,9 @@ body.dark-mode button {
   justify-content: center;
   margin-bottom: 1rem;
 }
+
+.dark-mode {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
