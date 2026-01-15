@@ -9,17 +9,16 @@ body {
     Ubuntu, Cantarell, sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 20px;
 }
 
 .container {
   display: grid;
-  grid-template-rows: auto auto repeat(5, 70px);
+  width: 50vh;
+  grid-template-rows: auto repeat(5, 70px);
   grid-template-columns: repeat(4, 70px);
   gap: 12px;
+  justify-content: center;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   padding: 10px;
