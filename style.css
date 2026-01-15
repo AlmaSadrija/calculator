@@ -227,3 +227,11 @@ body.dark-mode button {
   color: white;
   border: 1px solid #444;
 }
+
+.dark-mode {
+  padding: 5px;
+  color: yellow;
+  background-color: yellow;
+  align-self: top;
+  justify-content: center;
+}
