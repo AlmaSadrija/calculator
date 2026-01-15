@@ -228,10 +228,8 @@ body.dark-mode button {
   border: 1px solid #444;
 }
 
-.dark-mode {
-  padding: 5px;
-  color: yellow;
-  background-color: yellow;
+.theme-toggle {
+  display: flex;
   justify-content: center;
-  margin: 5px 30px 600px;
+  margin-bottom: 1rem;
 }
