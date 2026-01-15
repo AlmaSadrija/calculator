@@ -232,6 +232,6 @@ body.dark-mode button {
   padding: 5px;
   color: yellow;
   background-color: yellow;
-  align-self: top;
   justify-content: center;
+  margin: 5px 30px 600px;
 }
