@@ -230,9 +230,8 @@ body.dark-mode button {
 .theme-toggle {
   position: absolute;
   top: 20px;
-  right: 20px;
+  left: 20px;
 }
-
 
 .dark-mode {
   position: absolute;
