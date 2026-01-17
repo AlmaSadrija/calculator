@@ -235,6 +235,6 @@ body.dark-mode button {
 
 .dark-mode {
   position: absolute;
-  top: 2rem;
+  top: 1rem;
   left: 2rem;
 }
