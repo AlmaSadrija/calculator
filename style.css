@@ -228,10 +228,11 @@ body.dark-mode button {
 }
 
 .theme-toggle {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
+
 
 .dark-mode {
   position: absolute;
