@@ -12,14 +12,13 @@ body {
   padding: 20px;
 }
 
+
 .container {
   display: grid;
   width: 50vh;
   grid-template-rows: auto repeat(5, 70px);
   grid-template-columns: repeat(4, 70px);
   gap: 12px;
-  align-self: center;
-  justify-content: center;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   padding: 10px;
