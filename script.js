@@ -343,8 +343,3 @@ darkModeBtn.addEventListener("click", () => {
     darkModeBtn.textContent = "🌙";
   }
 });
-
-const array = [1, 4, 7, 9, 10, 15, 25, 41];
-const arrayMod = array.filter((num) => num > 10);
-
-console.log(arrayMod);
