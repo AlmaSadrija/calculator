@@ -231,11 +231,3 @@ body.dark-mode button {
   color: white;
   border: 1px solid #444;
 }
-
-
-
-.dark-mode {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-}
