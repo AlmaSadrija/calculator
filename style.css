@@ -231,3 +231,11 @@ body.dark-mode button {
   color: white;
   border: 1px solid #444;
 }
+
+.theme-toggle {
+  position: fixed;
+  /* stays in the viewport corner */
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
