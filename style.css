@@ -232,11 +232,7 @@ body.dark-mode button {
   border: 1px solid #444;
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 10px;
-  left: 20px;
-}
+
 
 .dark-mode {
   position: absolute;
