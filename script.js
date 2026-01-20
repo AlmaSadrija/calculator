@@ -352,10 +352,3 @@ function checkNumber(num) {
     console.log(`Numner ${num} is odd`);
   }
 }
-const findMax = [3, 7, 2, 9];
-const max = Math.max(...findMax);
-console.log(max);
-
-/*function findMax(arr) {
-  return Math.max(...arr);
-}*/
