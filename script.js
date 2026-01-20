@@ -343,3 +343,15 @@ darkModeBtn.addEventListener("click", () => {
     darkModeBtn.textContent = "🌙";
   }
 });
+
+//test
+function checkNumber(num) {
+  if (num % 2 === 0) {
+    console.log(`Number ${num} is even`);
+  } else {
+    console.log(`Numner ${num} is odd`);
+  }
+}
+const findMax = [3, 7, 2, 9];
+const max = Math.max(...findMax);
+console.log(max);
