@@ -369,9 +369,3 @@ function filterNumbers(arr) {
   return arr.filter((num) => num >= 5);
 }
 console.log(filterNumbers([2, 6, 8, 3, 10, 4]));
-
-function countLongWords(word) {
-  const words = word.split(" ");
-  const wordsChar = words.filter((wrd) => (wrd) => 5).length();
-}
-console.log(countLongWords("I love JavaScript and coding"));
