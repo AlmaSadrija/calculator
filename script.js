@@ -355,3 +355,23 @@ function checkNumber(num) {
 const findMax = [3, 7, 2, 9];
 const max = Math.max(...findMax);
 console.log(max);
+
+/*function findMax(arr) {
+  return Math.max(...arr);
+}*/
+
+function countEvens(arr) {
+  return arr.filter((num) => num % 2 === 0).length;
+}
+console.log(countEvens([1, 2, 4, 7, 8]));
+
+function filterNumbers(arr) {
+  return arr.filter((num) => num >= 5);
+}
+console.log(filterNumbers([2, 6, 8, 3, 10, 4]));
+
+function countLongWords(word) {
+  const words = word.split(" ");
+  const wordsChar = words.filter((wrd) => (wrd) => 5).length();
+}
+console.log(countLongWords("I love JavaScript and coding"));
