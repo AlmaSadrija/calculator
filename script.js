@@ -359,8 +359,3 @@ console.log(max);
 /*function findMax(arr) {
   return Math.max(...arr);
 }*/
-
-function countEvens(arr) {
-  return arr.filter((num) => num % 2 === 0).length;
-}
-console.log(countEvens([1, 2, 4, 7, 8]));
