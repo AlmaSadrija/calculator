@@ -239,7 +239,6 @@ body.dark-mode button {
   z-index: 100;
   background-color: #667eea;
   border: #000 10px solid;
-  border-radius: 4px;
 }
 
 .dark-mode {
