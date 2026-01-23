@@ -244,6 +244,5 @@ body.dark-mode button {
 
 .dark-mode {
   position: static;
-  background-color: aquamarine;
   /* let it behave like a normal button inside .theme-toggle */
 }
