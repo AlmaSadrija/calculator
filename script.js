@@ -349,3 +349,4 @@ console.log("Adding code just to push!");
 // temp.js
 // just a dummy change to push
 let dummy = "This is just to push to GitHub!";
+console.log(dummy);
