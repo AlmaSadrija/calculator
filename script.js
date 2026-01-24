@@ -12,7 +12,7 @@ const darkModeBtn = document.querySelector(".dark-mode");
 if (!display) console.error("Display element not found!");
 if (!operationDisplay)
   console.warn(
-    "Operation display element not found - operator display won't work"
+    "Operation display element not found - operator display won't work",
   );
 if (operatorButtons.length === 0) console.error("No operator buttons found!");
 
@@ -343,3 +343,5 @@ darkModeBtn.addEventListener("click", () => {
     darkModeBtn.textContent = "🌙";
   }
 });
+// placeholder.js
+console.log("Adding code just to push!");
