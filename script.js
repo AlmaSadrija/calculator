@@ -347,6 +347,5 @@ darkModeBtn.addEventListener("click", () => {
 
 // temp.js
 console.log("Adding code just to push!");
-// just a dummy change to push
 
 let dummy = "This is just to push to GitHub!";
