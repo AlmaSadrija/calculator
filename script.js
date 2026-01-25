@@ -346,6 +346,5 @@ darkModeBtn.addEventListener("click", () => {
 // placeholder.js
 
 // temp.js
-console.log("Adding code!");
 
 let dummy = "This is just to push!";
