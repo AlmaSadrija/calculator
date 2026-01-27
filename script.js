@@ -345,6 +345,4 @@ darkModeBtn.addEventListener("click", () => {
 });
 // placeholder.js
 
-// temp.js
-
 let dummy = "All those are comments";
