@@ -347,4 +347,4 @@ darkModeBtn.addEventListener("click", () => {
 
 // temp.js
 
-let dummy = "This is!";
+let dummy = "This";
