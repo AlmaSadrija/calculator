@@ -343,6 +343,4 @@ darkModeBtn.addEventListener("click", () => {
     darkModeBtn.textContent = "🌙";
   }
 });
-// placeholder.js
-
 let dummy = "All those are comments";
