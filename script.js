@@ -343,4 +343,5 @@ darkModeBtn.addEventListener("click", () => {
     darkModeBtn.textContent = "🌙";
   }
 });
+//dummy comment
 let dummy = "All those are comments for github";
