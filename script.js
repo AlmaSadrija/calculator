@@ -345,4 +345,3 @@ darkModeBtn.addEventListener("click", () => {
 });
 //dummy comment
 let dummy = "All those ";
-console.log("New dummy", dummy);
