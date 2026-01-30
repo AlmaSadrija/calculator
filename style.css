@@ -223,6 +223,7 @@ body.dark-mode .display,
 body.dark-mode .operation-display {
   background-color: #000;
   color: white;
+  border: 10px;
 }
 
 body.dark-mode button {
