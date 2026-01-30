@@ -344,4 +344,4 @@ darkModeBtn.addEventListener("click", () => {
   }
 });
 //dummy comment
-let dummy = "All those ";
+let dummy = "All those comments:)";
