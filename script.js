@@ -343,5 +343,3 @@ darkModeBtn.addEventListener("click", () => {
     darkModeBtn.textContent = "🌙";
   }
 });
-
-let dummy = "All those comments!";
