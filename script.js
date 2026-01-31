@@ -277,9 +277,9 @@ function handleEqual() {
     history.push(calcString);
     updateHistory();
 
+    // Case 3: pressing = without enough info → do nothing
     updateCalculatorDisplay();
   }
-  // Case 3: pressing = without enough info → do nothing
 }
 
 function updateHistory() {
