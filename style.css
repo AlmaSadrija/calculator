@@ -75,7 +75,7 @@ body {
   padding: 15px;
   max-height: 150px;
   overflow-y: auto;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   pointer-events: auto;
   position: relative;
   z-index: 1;
