@@ -340,6 +340,6 @@ darkModeBtn.addEventListener("click", () => {
   if (document.body.classList.contains("dark-mode")) {
     darkModeBtn.textContent = "☀️";
   } else {
-    darkModeBtn.textContent = "🌙dark";
+    darkModeBtn.textContent = "🌙";
   }
 });
