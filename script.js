@@ -343,4 +343,3 @@ darkModeBtn.addEventListener("click", () => {
     darkModeBtn.textContent = "🌙";
   }
 });
-var test = "Just text test";
