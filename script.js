@@ -343,6 +343,6 @@ darkModeBtn.addEventListener("click", () => {
     darkModeBtn.textContent = "🌙";
   }
 });
-var test = "Just text";
+var test = "Just text test";
 console.log(`${test}`);
 console.log(test);
