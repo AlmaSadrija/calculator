@@ -344,4 +344,4 @@ darkModeBtn.addEventListener("click", () => {
   }
 });
 var test = "Just text test";
-console.log(`${test}`);
+console.log(`${test} and more text`);
