@@ -345,3 +345,4 @@ darkModeBtn.addEventListener("click", () => {
 });
 var test = "Just text";
 console.log(`${test}`);
+console.log(test);
