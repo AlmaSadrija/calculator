@@ -347,3 +347,4 @@ let arr = [1, 2, 2];
 arr.pop();
 console.log(arr);
 arr.concat();
+console.log(arr);
