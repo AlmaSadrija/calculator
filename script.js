@@ -345,4 +345,5 @@ darkModeBtn.addEventListener("click", () => {
 });
 let arr = [1, 2, 2];
 arr.pop();
+arr.shift();
 console.log(arr);
