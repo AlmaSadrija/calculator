@@ -347,5 +347,6 @@ let arr = [1, 2, 3];
 arr.pop();
 const arr1 = arr;
 arr1.shift();
+arr.findIndex();
 console.log(arr);
 console.log(arr1);
