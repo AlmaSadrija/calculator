@@ -343,7 +343,7 @@ darkModeBtn.addEventListener("click", () => {
     darkModeBtn.textContent = "🌙";
   }
 });
-let arr = [1, 2, 3];
+let arr = [1, 2, 3, 4];
 arr.pop();
 const arr1 = arr;
 arr1.shift();
