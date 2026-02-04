@@ -348,4 +348,4 @@ arr.pop();
 const arr1 = arr;
 arr1.shift();
 arr.findIndex();
-console.log();
+console.log(arr1);
