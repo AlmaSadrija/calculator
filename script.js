@@ -347,6 +347,5 @@ let arr = [1, 2, 3, 4];
 arr.pop();
 console.log(arr);
 const arr1 = arr;
-arr1.shift();
 arr.unshift();
 console.log(arr1);
