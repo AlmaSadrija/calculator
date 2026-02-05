@@ -233,16 +233,26 @@ function handleEqual() {
   if (state.previous !== "" && state.current !== "" && state.operator) {
     const originalCurrent = state.current; // Save before calculation
     result = calculate(state.previous, state.current, state.operator);
-    //  if the number is too long after decimal point cut it
-    state.current = result;
-    let rounded = state.current.toFixed(2);
-    state.current = Number(rounded);
+
+    // Handle error early
+    if (result === "Error") {
+      state.current = "Error";
+      state.previous = "";
+      state.operator = null;
+      state.justCalculated = true;
+      updateCalculatorDisplay();
+      return;
+    }
+
+    // 🔑 FIX: round THE RESULT, not state.current
+    result = Number(result);
+
     if (!Number.isInteger(result)) {
       result = Number(result.toFixed(2));
     }
+
     // Use the SAME rounded result everywhere
     state.current = result.toString();
-    updateCalculatorDisplay();
 
     // Create history string before clearing state.previous
     calcString = `${state.previous} ${state.operator} ${originalCurrent} = ${result}`;
