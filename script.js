@@ -240,11 +240,6 @@ function handleEqual() {
     if (!Number.isInteger(result)) {
       result = Number(result.toFixed(2));
     }
-
-    if (!Number.isInteger(result)) {
-      result = Number(result.toFixed(2));
-    }
-
     // Use the SAME rounded result everywhere
     state.current = result.toString();
     updateCalculatorDisplay();
