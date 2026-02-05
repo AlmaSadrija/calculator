@@ -298,7 +298,7 @@ function updateHistory() {
 }
 
 // clearing history
-clearHistroy.addEventListener("click", () => {
+clearHistory.addEventListener("click", () => {
   if (confirm("Are you sure you want to clear all history?")) history = [];
   historyList.innerHTML = "";
 });
