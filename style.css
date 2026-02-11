@@ -244,4 +244,5 @@ body.dark-mode button {
 .dark-mode {
   position: static;
   border: 10px solid red;
+  border-radius: 10px;
 }
